@@ -11,6 +11,10 @@ protocol FeedViewDelegate {
     func didTouch(cell: FeedCell, indexPath: IndexPath)
 }
 
+protocol GetAfterNewsDelegate: FeedViewDelegate {
+    func getAfterNews()
+}
+
 class FeedView: UIView {
     
     //MARK: - Properties
@@ -21,14 +25,16 @@ class FeedView: UIView {
             tableView.reloadData()
         }
     }
-    var delegate: FeedViewDelegate?
+    var feedDelegate: FeedViewDelegate?
+    var getAfterDelegate: GetAfterNewsDelegate?
     
     //MARK: - Public Methods
     
     func setup(with viewModels: [HotNewsViewModel], and delegate: FeedViewDelegate) {
         tableView.register(UINib(nibName: "FeedCell", bundle: Bundle.main), forCellReuseIdentifier: "FeedCell")
         
-        self.delegate = delegate
+        self.feedDelegate = delegate
+        self.getAfterDelegate = delegate as? GetAfterNewsDelegate
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -36,7 +42,7 @@ class FeedView: UIView {
     }
 }
 
-extension FeedView: UITableViewDelegate, UITableViewDataSource {
+extension FeedView: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModels.count
     }
@@ -60,6 +66,26 @@ extension FeedView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? FeedCell else { fatalError("Cell is not of type FeedCell!") }
         
-        delegate?.didTouch(cell: cell, indexPath: indexPath)
+        feedDelegate?.didTouch(cell: cell, indexPath: indexPath)
+    }
+
+    private func createSpinnerFooter() -> UIView {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: 100))
+        
+        let spinner = UIActivityIndicatorView()
+        spinner.center = footerView.center
+        footerView.addSubview(spinner)
+        spinner.startAnimating()
+        
+        return footerView
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        if position > (tableView.contentSize.height-100-scrollView.frame.size.height) {
+            self.tableView.tableFooterView = createSpinnerFooter()
+            
+            getAfterDelegate?.getAfterNews()
+        }
     }
 }

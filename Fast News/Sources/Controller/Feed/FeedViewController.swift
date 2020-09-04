@@ -19,6 +19,7 @@ class FeedViewController: UIViewController {
     var hotNews: [HotNews] = [HotNews]() {
         didSet {
             var viewModels: [HotNewsViewModel] = [HotNewsViewModel]()
+            
             _ = hotNews.map { (news) in
                 viewModels.append(HotNewsViewModel(hotNews: news))
             }
@@ -33,6 +34,7 @@ class FeedViewController: UIViewController {
         }
         return view
     }
+    var after = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,11 +42,16 @@ class FeedViewController: UIViewController {
         navigationItem.title = "Fast News"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        HotNewsProvider.shared.hotNews { (completion) in
+        getHotNews()
+    }
+    
+    func getHotNews() {
+        HotNewsProvider.shared.hotNews(kAfterValue: after) { (completion) in
             do {
                 let hotNews = try completion()
                 
-                self.hotNews = hotNews
+                self.hotNews += hotNews.0
+                self.after = hotNews.1
             } catch {
                 print(error.localizedDescription)
             }
@@ -64,3 +71,13 @@ extension FeedViewController: FeedViewDelegate {
         self.performSegue(withIdentifier: kToDetails, sender: self.mainView.viewModels[indexPath.row])
     }
 }
+
+extension FeedViewController: GetAfterNewsDelegate {
+    func getAfterNews() {
+        guard !HotNewsProvider.shared.isPaginating else{
+            return
+        }
+        getHotNews()
+    }
+}
+
