@@ -42,11 +42,11 @@ class FeedViewController: UIViewController {
         navigationItem.title = "Fast News"
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        getHotNews()
+        getHotNews(provider: HotNewsProvider.shared)
     }
     
-    func getHotNews() {
-        HotNewsProvider.shared.hotNews(kAfterValue: after) { (completion) in
+    func getHotNews(provider: ProviderProtocol) {
+        provider.hotNews(kAfterValue: after) { (completion) in
             do {
                 let hotNews = try completion()
                 
@@ -77,7 +77,7 @@ extension FeedViewController: GetAfterNewsDelegate {
         guard !HotNewsProvider.shared.isPaginating else{
             return
         }
-        getHotNews()
+
     }
 }
 

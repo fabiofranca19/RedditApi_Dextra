@@ -8,11 +8,23 @@
 import Foundation
 import Alamofire
 
+//MARK: - HotNewsError
+enum HotNewsError: Error {
+    case isInvalidUrl
+    case failure
+}
+
+//MARK: - Provider Protocol
+protocol ProviderProtocol {
+    func hotNews(kAfterValue: String,completion: @escaping HotNewsCallback)
+    func hotNewsComments(id: String, completion: @escaping HotNewsCommentsCallback)
+}
+
 //MARK: - Type alias
 typealias HotNewsCallback = ( () throws -> ([HotNews],String)) -> Void
 typealias HotNewsCommentsCallback = ( () throws -> [Comment]) -> Void
 
-class HotNewsProvider {
+class HotNewsProvider: ProviderProtocol {
     
     //MARK: - Constants
     
@@ -86,13 +98,13 @@ class HotNewsProvider {
                     break
                 case .failure(let error):
                     debugPrint(error.localizedDescription)
-                    completion { throw error }
+                    completion { throw HotNewsError.failure }
                     break
                 }
             }
         } catch {
             debugPrint(error.localizedDescription)
-            completion { throw error }
+            completion { throw HotNewsError.isInvalidUrl }
         }
     }
     
