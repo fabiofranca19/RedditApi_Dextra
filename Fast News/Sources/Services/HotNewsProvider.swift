@@ -148,12 +148,12 @@ class HotNewsProvider: ProviderProtocol {
                     completion { return commentsArray }
                     break
                 case .failure(let error):
-                    completion { throw error }
+                    completion { throw HotNewsError.failure }
                     break
                 }
             }
         } catch {
-            completion { throw error }
+            completion { throw HotNewsError.isInvalidUrl }
         }
     }
 }

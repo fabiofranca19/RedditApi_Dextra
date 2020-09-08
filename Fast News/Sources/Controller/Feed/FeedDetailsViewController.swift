@@ -42,7 +42,11 @@ class FeedDetailsViewController: UIViewController {
         
         navigationItem.largeTitleDisplayMode = .never
         
-        HotNewsProvider.shared.hotNewsComments(id: hotNewsViewModel?.id ?? "") { (completion) in
+        getHotNewsDetails(provider: HotNewsProvider.shared)
+    }
+    
+    func getHotNewsDetails(provider: ProviderProtocol) {
+        provider.hotNewsComments(id: hotNewsViewModel?.id ?? "") { (completion) in
             do {
                 let comments = try completion()
                 

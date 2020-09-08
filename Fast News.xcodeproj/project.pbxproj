@@ -13,6 +13,7 @@
 		E60AA2F82506C450002E0B6A /* HotNewsProviderMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60AA2F72506C450002E0B6A /* HotNewsProviderMock.swift */; };
 		E60AA2FA2506CA87002E0B6A /* FeedViewControllerSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60AA2F92506CA87002E0B6A /* FeedViewControllerSpecs.swift */; };
 		E6C759E42506FC3F004466B4 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6C759E22506FC3F004466B4 /* Feed.storyboard */; };
+		E6C759E62507116A004466B4 /* FeedDetailsViewControllerSpecs.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6C759E52507116A004466B4 /* FeedDetailsViewControllerSpecs.swift */; };
 		E7472FD22341813E002AE7B5 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7472FD12341813E002AE7B5 /* Date+Ext.swift */; };
 		E7640A862331385400FFF599 /* HotNewsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7640A852331385400FFF599 /* HotNewsProvider.swift */; };
 		E789E88B232F47A40091660E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E789E88A232F47A40091660E /* AppDelegate.swift */; };
@@ -70,6 +71,7 @@
 		E60AA2F72506C450002E0B6A /* HotNewsProviderMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotNewsProviderMock.swift; sourceTree = "<group>"; };
 		E60AA2F92506CA87002E0B6A /* FeedViewControllerSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewControllerSpecs.swift; sourceTree = "<group>"; };
 		E6C759E32506FC3F004466B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Feed.storyboard; sourceTree = "<group>"; };
+		E6C759E52507116A004466B4 /* FeedDetailsViewControllerSpecs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailsViewControllerSpecs.swift; sourceTree = "<group>"; };
 		E7472FD12341813E002AE7B5 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		E7640A852331385400FFF599 /* HotNewsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotNewsProvider.swift; sourceTree = "<group>"; };
 		E789E887232F47A40091660E /* Fast News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fast News.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,6 +195,7 @@
 				E789E8A1232F47A50091660E /* Info.plist */,
 				E60AA2F72506C450002E0B6A /* HotNewsProviderMock.swift */,
 				E60AA2F92506CA87002E0B6A /* FeedViewControllerSpecs.swift */,
+				E6C759E52507116A004466B4 /* FeedDetailsViewControllerSpecs.swift */,
 			);
 			path = "Fast NewsTests";
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 			files = (
 				E60AA2FA2506CA87002E0B6A /* FeedViewControllerSpecs.swift in Sources */,
 				E60AA2F82506C450002E0B6A /* HotNewsProviderMock.swift in Sources */,
+				E6C759E62507116A004466B4 /* FeedDetailsViewControllerSpecs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

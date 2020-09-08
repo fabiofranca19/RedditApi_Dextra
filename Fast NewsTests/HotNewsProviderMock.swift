@@ -18,12 +18,15 @@ enum Status {
 class HotNewsProviderMock: ProviderProtocol {
     let status: Status
     
-    let new = HotNews(id: "teste", title: "teste", preview: Preview(), url: "teste", created: 0, ups: 0, downs: 0, score: 0, authorFullname: "teste", numComments: 0)
+    let new = HotNews()
     var news = [HotNews]()
+    let comment = Comment()
+    var comments = [Comment]()
     
     init(status: Status) {
         self.status = status
         news.append(new)
+        comments.append(comment)
     }
     
     func hotNews(kAfterValue: String,completion: @escaping HotNewsCallback){
@@ -39,6 +42,14 @@ class HotNewsProviderMock: ProviderProtocol {
     }
     
     func hotNewsComments(id: String, completion: @escaping HotNewsCommentsCallback){
-        
+        switch status {
+        case .isInvalidUrl:
+            completion{ throw HotNewsError.isInvalidUrl }
+        case .sucess:
+            completion{return (comments) }
+            break
+        case .failure:
+            completion{ throw HotNewsError.failure }
+        }
     }
 }

@@ -14,7 +14,6 @@ import Nimble
 class FeedViewControllerSpecs: QuickSpec{
     override func spec() {
         describe("FeedViewController") {
-            
             var sut: FeedViewController!
             
             beforeEach {

@@ -61,7 +61,7 @@
         <!--Feed Details View Controller-->
         <scene sceneID="QaO-Qv-FLC">
             <objects>
-                <viewController id="RIE-QW-hj6" customClass="FeedDetailsViewController" customModule="Fast_News" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedDetailsViewController" id="RIE-QW-hj6" customClass="FeedDetailsViewController" customModule="Fast_News" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b6Q-Fb-IUl" customClass="FeedDetailsView" customModule="Fast_News" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
